@@ -11,7 +11,7 @@ public protocol DataLoading {
 }
 
 public extension DataLoading {
-    func dataLoadingPublisher(for url: URL) -> AnyPublisher<Data, URLError> {
+    func publisher(for url: URL) -> AnyPublisher<Data, URLError> {
         loadData(for: url, parameters: nil, method: .get)
     }
 }
