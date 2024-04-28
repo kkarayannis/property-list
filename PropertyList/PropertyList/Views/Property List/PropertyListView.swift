@@ -11,7 +11,11 @@ struct PropertyListView: View {
             case .property, .highlighted:
                 // TODO: Confirm with backend/PM that we want to skip any entries that don't have all shown fields.
                 if let propertyItem = item.propertyItem {
-                    PropertyListPropertyView(item: propertyItem)
+                    let viewModel = PropertyListPropertyViewModel(
+                        propertyItem: propertyItem,
+                        imageLoader: viewModel.imageLoader
+                    )
+                    PropertyListPropertyView(viewModel: viewModel)
                 }
             case .area:
                 PropertyListAreaView()

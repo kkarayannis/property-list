@@ -2,6 +2,7 @@ import Foundation
 
 import Cache
 import DataLoader
+import ImageLoader
 
 protocol ServiceProviding {
     func provideDataLoader() -> DataLoading
@@ -10,11 +11,13 @@ protocol ServiceProviding {
 }
 
 final class ServiceProvider: ServiceProviding {
+    private let logger = Logger()
     private let dataLoader = DataLoader(urlSession: URLSession.shared)
     private let cache = Cache(fileManager: FileManager.default)
-    private let logger = Logger()
+    private lazy var imageLoader = ImageLoader(dataLoader: dataLoader, cache: cache)
     private lazy var pageFactory = PageFactoryImplementation(
-        propertyListLoader: PropertyListLoader(dataLoader: dataLoader, cache: cache, logger: logger), 
+        propertyListLoader: PropertyListLoader(dataLoader: dataLoader, cache: cache, logger: logger),
+        imageLoader: imageLoader,
         logger: logger
     )
     

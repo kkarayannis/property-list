@@ -1,5 +1,6 @@
 import Foundation
 
+import ImageLoader
 import PageLoader
 
 enum PageType: Hashable {
@@ -13,10 +14,12 @@ protocol PageFactory {
 
 final class PageFactoryImplementation: PageFactory {
     private let propertyListLoader: PropertyListLoader
+    private let imageLoader: ImageLoading
     private let logger: Logging
     
-    init(propertyListLoader: PropertyListLoader, logger: Logging) {
+    init(propertyListLoader: PropertyListLoader, imageLoader: ImageLoading, logger: Logging) {
         self.propertyListLoader = propertyListLoader
+        self.imageLoader = imageLoader
         self.logger = logger
     }
     
@@ -28,7 +31,11 @@ final class PageFactoryImplementation: PageFactory {
     }
     
     private var propertyListPage: any Page {
-        let viewModel = PropertyListViewModel(propertyListLoader: propertyListLoader, logger: logger)
+        let viewModel = PropertyListViewModel(
+            propertyListLoader: propertyListLoader,
+            imageLoader: imageLoader,
+            logger: logger
+        )
         return PropertyListPage(viewModel: viewModel)
     }
 }

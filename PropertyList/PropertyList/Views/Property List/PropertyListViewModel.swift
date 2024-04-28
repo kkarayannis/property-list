@@ -1,19 +1,22 @@
 import Combine
 import Foundation
 
+import ImageLoader
 import PageLoader
 
 final class PropertyListViewModel {
     // Dependencies
     private let propertyListLoader: PropertyListLoader
     private let logger: Logging
+    let imageLoader: ImageLoading
     
     // State
     @Published private var itemsResult: Result<[PropertyListItem], Error>?
     private var cancellable: AnyCancellable?
     
-    init(propertyListLoader: PropertyListLoader, logger: Logging) {
+    init(propertyListLoader: PropertyListLoader, imageLoader: ImageLoading, logger: Logging) {
         self.propertyListLoader = propertyListLoader
+        self.imageLoader = imageLoader
         self.logger = logger
     }
     

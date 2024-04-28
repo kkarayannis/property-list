@@ -1,30 +1,26 @@
 import SwiftUI
-
-struct PropertyListPropertyItem {
-    let id: String
-    let area: String
-    let image: URL
-    let municipality: String
-    let askingPrice: Int
-    let daysSincePublish: Int?
-    let livingArea: Int
-    let numberOfRooms: Int
-    let streetAddress: String
-    let monthlyFee: Int?
-    let isHighlighted: Bool
-}
+import ImageLoader
 
 struct PropertyListPropertyView: View {
-    static let imageAspectRatio = 0.43042071
-    static let imageHighlightedAspectRatio = 0.56808943
-    let item: PropertyListPropertyItem
+    static let imageAspectRatio = 2.3254716981
+    static let imageHighlightedAspectRatio = 1.7383015598
+    let viewModel: PropertyListPropertyViewModel
     
     var body: some View {
+        let item = viewModel.propertyItem
         VStack(alignment: .leading, spacing: 5) {
-            image
+            Color.clear
+                .frame(maxWidth: .infinity)
+                .aspectRatio(imageAspectRatio, contentMode: .fill)
+                .border(Color.yellow, width: viewModel.propertyItem.isHighlighted ? 3 : 0)
+                .background {
+                    ImageView(viewModel: viewModel.imageViewModel)
+                }
+                .clipped()
+                .padding(.bottom)
             
             Text(verbatim: item.streetAddress)
-                .font(.title2)
+                .font(.title3)
                 .fontWeight(.heavy)
             
             Text(verbatim: item.municipality)
@@ -47,50 +43,16 @@ struct PropertyListPropertyView: View {
             .fontWeight(.heavy)
         }
         .padding()
-    }
-    
-    @ViewBuilder 
-    private var image: some View {
-        Color.gray
-            .aspectRatio(Self.imageAspectRatio, contentMode: .fill)
-            .padding()
+        .listRowSeparator(.hidden)
     }
     
     private var imageAspectRatio: Double {
-        item.isHighlighted ? Self.imageHighlightedAspectRatio : Self.imageAspectRatio
-    }
-}
-
-extension PropertyListItem {
-    var propertyItem: PropertyListPropertyItem? {
-        guard
-            type != .area,
-            let municipality,
-            let askingPrice,
-            let livingArea,
-            let streetAddress,
-            let numberOfRooms,
-            let url = URL(string: image)
-        else { return nil }
-        
-        return PropertyListPropertyItem(
-            id: id,
-            area: area,
-            image: url,
-            municipality: municipality,
-            askingPrice: askingPrice,
-            daysSincePublish: daysSincePublish,
-            livingArea: livingArea,
-            numberOfRooms: numberOfRooms,
-            streetAddress: streetAddress,
-            monthlyFee: monthlyFee,
-            isHighlighted: type == .highlighted
-        )
+        viewModel.propertyItem.isHighlighted ? Self.imageHighlightedAspectRatio : Self.imageAspectRatio
     }
 }
 
 #Preview {
-    PropertyListPropertyView(item: PropertyListPropertyItem(
+    let item = PropertyListPropertyItem(
         id: "id",
         area: "100",
         image: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Hus_i_svarttorp.jpg/800px-Hus_i_svarttorp.jpg")!,
@@ -101,5 +63,7 @@ extension PropertyListItem {
         numberOfRooms: 5,
         streetAddress: "Mockvägen 42",
         monthlyFee: nil,
-        isHighlighted: true))
+        isHighlighted: true)
+    let viewModel = PropertyListPropertyViewModel(propertyItem: item, imageLoader: ImageLoader.fake)
+    return PropertyListPropertyView(viewModel: viewModel)
 }
