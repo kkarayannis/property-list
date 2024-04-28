@@ -40,6 +40,7 @@
 		2E2FEEB32BDE4C62002E6B4A /* PropertyListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEB22BDE4C62002E6B4A /* PropertyListModels.swift */; };
 		2E2FEEB62BDE5489002E6B4A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEB52BDE5489002E6B4A /* Logger.swift */; };
 		2E2FEEB82BDE57AE002E6B4A /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEB72BDE57AE002E6B4A /* String+Extensions.swift */; };
+		2E2FEEBB2BDE58D3002E6B4A /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEBA2BDE58D3002E6B4A /* ServiceProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		2E2FEEB22BDE4C62002E6B4A /* PropertyListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListModels.swift; sourceTree = "<group>"; };
 		2E2FEEB52BDE5489002E6B4A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2E2FEEB72BDE57AE002E6B4A /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		2E2FEEBA2BDE58D3002E6B4A /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 				2E2FEDFE2BDE3FD6002E6B4A /* PropertyListApp.swift */,
 				2E2FEE002BDE3FD6002E6B4A /* ContentView.swift */,
 				2E2FEEAF2BDE4686002E6B4A /* PropertyListLoader */,
+				2E2FEEB92BDE58C2002E6B4A /* ServiceProvider */,
 				2E2FEEB42BDE5470002E6B4A /* Utilities */,
 				2E2FEEAE2BDE4674002E6B4A /* Assets */,
 			);
@@ -374,6 +377,14 @@
 				2E2FEEB52BDE5489002E6B4A /* Logger.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2E2FEEB92BDE58C2002E6B4A /* ServiceProvider */ = {
+			isa = PBXGroup;
+			children = (
+				2E2FEEBA2BDE58D3002E6B4A /* ServiceProvider.swift */,
+			);
+			path = ServiceProvider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -691,6 +702,7 @@
 			files = (
 				2E2FEEB62BDE5489002E6B4A /* Logger.swift in Sources */,
 				2E2FEEB32BDE4C62002E6B4A /* PropertyListModels.swift in Sources */,
+				2E2FEEBB2BDE58D3002E6B4A /* ServiceProvider.swift in Sources */,
 				2E2FEE012BDE3FD6002E6B4A /* ContentView.swift in Sources */,
 				2E2FEEB12BDE4C42002E6B4A /* PropertyListLoader.swift in Sources */,
 				2E2FEEB82BDE57AE002E6B4A /* String+Extensions.swift in Sources */,
