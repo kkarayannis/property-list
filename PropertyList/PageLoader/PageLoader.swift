@@ -13,6 +13,7 @@ public protocol Page {
     var view: AnyView { get }
     var title: String { get }
     var loadingStatePublisher: AnyPublisher<PageLoaderState, Never> { get }
+    var titleDisplayMode: NavigationBarItem.TitleDisplayMode { get }
     func load()
 }
 
@@ -43,6 +44,7 @@ public struct PageLoader: View {
             }
         }
         .navigationTitle(page.title)
+        .navigationBarTitleDisplayMode(page.titleDisplayMode)
         .onReceive(page.loadingStatePublisher) {
             state = $0
         }

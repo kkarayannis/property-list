@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2E2FEDFF2BDE3FD6002E6B4A /* PropertyListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEDFE2BDE3FD6002E6B4A /* PropertyListApp.swift */; };
-		2E2FEE012BDE3FD6002E6B4A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEE002BDE3FD6002E6B4A /* ContentView.swift */; };
 		2E2FEE032BDE3FD7002E6B4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2FEE022BDE3FD7002E6B4A /* Assets.xcassets */; };
 		2E2FEE062BDE3FD7002E6B4A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E2FEE052BDE3FD7002E6B4A /* Preview Assets.xcassets */; };
 		2E2FEE102BDE3FD7002E6B4A /* PropertyListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEE0F2BDE3FD7002E6B4A /* PropertyListTests.swift */; };
@@ -41,6 +40,13 @@
 		2E2FEEB62BDE5489002E6B4A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEB52BDE5489002E6B4A /* Logger.swift */; };
 		2E2FEEB82BDE57AE002E6B4A /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEB72BDE57AE002E6B4A /* String+Extensions.swift */; };
 		2E2FEEBB2BDE58D3002E6B4A /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEBA2BDE58D3002E6B4A /* ServiceProvider.swift */; };
+		2E2FEEBF2BDE5F16002E6B4A /* PageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEBE2BDE5F16002E6B4A /* PageFactory.swift */; };
+		2E2FEEC22BDE6030002E6B4A /* PropertyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEC12BDE6030002E6B4A /* PropertyListView.swift */; };
+		2E2FEEC42BDE6045002E6B4A /* PropertyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEC32BDE6045002E6B4A /* PropertyListViewModel.swift */; };
+		2E2FEEC62BDE60E2002E6B4A /* PropertyListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEC52BDE60E2002E6B4A /* PropertyListPage.swift */; };
+		2E2FEEC82BDE67FD002E6B4A /* PropertyListPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEC72BDE67FD002E6B4A /* PropertyListPropertyView.swift */; };
+		2E2FEECA2BDE68EC002E6B4A /* PropertyListAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEEC92BDE68EC002E6B4A /* PropertyListAreaView.swift */; };
+		2E2FEECD2BDE7E91002E6B4A /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FEECC2BDE7E91002E6B4A /* NavigationCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,7 +134,6 @@
 /* Begin PBXFileReference section */
 		2E2FEDFB2BDE3FD6002E6B4A /* PropertyList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PropertyList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2FEDFE2BDE3FD6002E6B4A /* PropertyListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListApp.swift; sourceTree = "<group>"; };
-		2E2FEE002BDE3FD6002E6B4A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E2FEE022BDE3FD7002E6B4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E2FEE052BDE3FD7002E6B4A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2E2FEE0B2BDE3FD7002E6B4A /* PropertyListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PropertyListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +165,13 @@
 		2E2FEEB52BDE5489002E6B4A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2E2FEEB72BDE57AE002E6B4A /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		2E2FEEBA2BDE58D3002E6B4A /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		2E2FEEBE2BDE5F16002E6B4A /* PageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFactory.swift; sourceTree = "<group>"; };
+		2E2FEEC12BDE6030002E6B4A /* PropertyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListView.swift; sourceTree = "<group>"; };
+		2E2FEEC32BDE6045002E6B4A /* PropertyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListViewModel.swift; sourceTree = "<group>"; };
+		2E2FEEC52BDE60E2002E6B4A /* PropertyListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListPage.swift; sourceTree = "<group>"; };
+		2E2FEEC72BDE67FD002E6B4A /* PropertyListPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListPropertyView.swift; sourceTree = "<group>"; };
+		2E2FEEC92BDE68EC002E6B4A /* PropertyListAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListAreaView.swift; sourceTree = "<group>"; };
+		2E2FEECC2BDE7E91002E6B4A /* NavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,7 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				2E2FEDFE2BDE3FD6002E6B4A /* PropertyListApp.swift */,
-				2E2FEE002BDE3FD6002E6B4A /* ContentView.swift */,
+				2E2FEEBD2BDE5EFA002E6B4A /* Views */,
 				2E2FEEAF2BDE4686002E6B4A /* PropertyListLoader */,
 				2E2FEEB92BDE58C2002E6B4A /* ServiceProvider */,
 				2E2FEEB42BDE5470002E6B4A /* Utilities */,
@@ -385,6 +397,44 @@
 				2E2FEEBA2BDE58D3002E6B4A /* ServiceProvider.swift */,
 			);
 			path = ServiceProvider;
+			sourceTree = "<group>";
+		};
+		2E2FEEBD2BDE5EFA002E6B4A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2E2FEECB2BDE7E77002E6B4A /* Navigation */,
+				2E2FEEC02BDE601C002E6B4A /* Property List */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2E2FEEC02BDE601C002E6B4A /* Property List */ = {
+			isa = PBXGroup;
+			children = (
+				2E2FEEC52BDE60E2002E6B4A /* PropertyListPage.swift */,
+				2E2FEEC12BDE6030002E6B4A /* PropertyListView.swift */,
+				2E2FEEC32BDE6045002E6B4A /* PropertyListViewModel.swift */,
+				2E2FEECE2BDE83D4002E6B4A /* Items */,
+			);
+			path = "Property List";
+			sourceTree = "<group>";
+		};
+		2E2FEECB2BDE7E77002E6B4A /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				2E2FEEBE2BDE5F16002E6B4A /* PageFactory.swift */,
+				2E2FEECC2BDE7E91002E6B4A /* NavigationCoordinator.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		2E2FEECE2BDE83D4002E6B4A /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				2E2FEEC72BDE67FD002E6B4A /* PropertyListPropertyView.swift */,
+				2E2FEEC92BDE68EC002E6B4A /* PropertyListAreaView.swift */,
+			);
+			path = Items;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -701,9 +751,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E2FEEB62BDE5489002E6B4A /* Logger.swift in Sources */,
+				2E2FEEC22BDE6030002E6B4A /* PropertyListView.swift in Sources */,
+				2E2FEEC82BDE67FD002E6B4A /* PropertyListPropertyView.swift in Sources */,
+				2E2FEECD2BDE7E91002E6B4A /* NavigationCoordinator.swift in Sources */,
+				2E2FEEBF2BDE5F16002E6B4A /* PageFactory.swift in Sources */,
 				2E2FEEB32BDE4C62002E6B4A /* PropertyListModels.swift in Sources */,
 				2E2FEEBB2BDE58D3002E6B4A /* ServiceProvider.swift in Sources */,
-				2E2FEE012BDE3FD6002E6B4A /* ContentView.swift in Sources */,
+				2E2FEEC42BDE6045002E6B4A /* PropertyListViewModel.swift in Sources */,
+				2E2FEECA2BDE68EC002E6B4A /* PropertyListAreaView.swift in Sources */,
+				2E2FEEC62BDE60E2002E6B4A /* PropertyListPage.swift in Sources */,
 				2E2FEEB12BDE4C42002E6B4A /* PropertyListLoader.swift in Sources */,
 				2E2FEEB82BDE57AE002E6B4A /* String+Extensions.swift in Sources */,
 				2E2FEDFF2BDE3FD6002E6B4A /* PropertyListApp.swift in Sources */,

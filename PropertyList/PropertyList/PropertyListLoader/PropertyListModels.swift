@@ -8,7 +8,7 @@ struct PropertyListResponse: Decodable {
     }
 }
 
-struct PropertyListItem: Decodable {
+struct PropertyListItem: Decodable, Equatable, Identifiable {
     let type: ItemType
     let id: String
     let area: String

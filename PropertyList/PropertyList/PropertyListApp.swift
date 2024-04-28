@@ -6,7 +6,7 @@ struct PropertyListApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationCoordinator(rootPageType: .propertyList, pageFactory: serviceProvider.providePageFactory())
         }
     }
 }
