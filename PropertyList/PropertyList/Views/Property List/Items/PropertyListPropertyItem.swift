@@ -18,10 +18,12 @@ struct PropertyListPropertyItem {
 
 final class PropertyListPropertyViewModel {
     let propertyItem: PropertyListPropertyItem
+    let destinationURL: URL?
     let imageLoader: ImageLoading
     
-    init(propertyItem: PropertyListPropertyItem, imageLoader: ImageLoading) {
+    init(propertyItem: PropertyListPropertyItem, destinationURL: URL? = nil, imageLoader: ImageLoading) {
         self.propertyItem = propertyItem
+        self.destinationURL = destinationURL
         self.imageLoader = imageLoader
     }
     

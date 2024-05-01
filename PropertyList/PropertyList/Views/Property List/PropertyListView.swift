@@ -13,9 +13,18 @@ struct PropertyListView: View {
                 if let propertyItem = item.propertyItem {
                     let viewModel = PropertyListPropertyViewModel(
                         propertyItem: propertyItem,
+                        destinationURL: item.id == items.first?.id ? PropertyLoader.Endpoint.url : nil,
                         imageLoader: viewModel.imageLoader
                     )
-                    PropertyListPropertyView(viewModel: viewModel)
+                    if let destinationURL = viewModel.destinationURL {
+                        PropertyListPropertyView(viewModel: viewModel)
+                            .background {
+                                NavigationLink(value: PageType.propertyDetails(destinationURL)) { EmptyView() }
+                                    .opacity(0.0)
+                            }
+                    } else {
+                        PropertyListPropertyView(viewModel: viewModel)
+                    }
                 }
             case .area:
                 PropertyListAreaView()

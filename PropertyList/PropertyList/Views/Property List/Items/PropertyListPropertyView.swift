@@ -24,7 +24,6 @@ struct PropertyListPropertyView: View {
                 .fontWeight(.heavy)
             
             Text(verbatim: item.municipality)
-                .font(.body)
                 .fontWeight(.medium)
                 .foregroundStyle(.secondary)
             
@@ -49,21 +48,4 @@ struct PropertyListPropertyView: View {
     private var imageAspectRatio: Double {
         viewModel.propertyItem.isHighlighted ? Self.imageHighlightedAspectRatio : Self.imageAspectRatio
     }
-}
-
-#Preview {
-    let item = PropertyListPropertyItem(
-        id: "id",
-        area: "100",
-        image: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Hus_i_svarttorp.jpg/800px-Hus_i_svarttorp.jpg")!,
-        municipality: "Stockholm",
-        askingPrice: 1_000_000,
-        daysSincePublish: nil,
-        livingArea: 150,
-        numberOfRooms: 5,
-        streetAddress: "Mockvägen 42",
-        monthlyFee: nil,
-        isHighlighted: true)
-    let viewModel = PropertyListPropertyViewModel(propertyItem: item, imageLoader: ImageLoader.fake)
-    return PropertyListPropertyView(viewModel: viewModel)
 }

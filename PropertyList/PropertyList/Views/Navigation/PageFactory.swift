@@ -5,6 +5,8 @@ import PageLoader
 
 enum PageType: Hashable {
     case propertyList
+    // In production we would probably pass an id here instead of a full URL.
+    case propertyDetails(URL)
 }
 
 /// Responsible for creating pages.
@@ -13,12 +15,19 @@ protocol PageFactory {
 }
 
 final class PageFactoryImplementation: PageFactory {
-    private let propertyListLoader: PropertyListLoader
+    private let propertyListLoader: PropertyListLoading
+    private let propertyLoader: PropertyLoading
     private let imageLoader: ImageLoading
     private let logger: Logging
     
-    init(propertyListLoader: PropertyListLoader, imageLoader: ImageLoading, logger: Logging) {
+    init(
+        propertyListLoader: PropertyListLoading,
+        propertyLoader: PropertyLoading,
+        imageLoader: ImageLoading,
+        logger: Logging
+    ) {
         self.propertyListLoader = propertyListLoader
+        self.propertyLoader = propertyLoader
         self.imageLoader = imageLoader
         self.logger = logger
     }
@@ -26,16 +35,28 @@ final class PageFactoryImplementation: PageFactory {
     func createPage(for type: PageType) -> Page {
         switch type {
         case .propertyList:
-            propertyListPage
+            createPropertyListPage()
+        case let .propertyDetails(url):
+            createPropertyPage(url: url)
         }
     }
     
-    private var propertyListPage: any Page {
+    private func createPropertyListPage() -> any Page {
         let viewModel = PropertyListViewModel(
             propertyListLoader: propertyListLoader,
             imageLoader: imageLoader,
             logger: logger
         )
         return PropertyListPage(viewModel: viewModel)
+    }
+    
+    private func createPropertyPage(url: URL) -> any Page {
+        let viewModel = PropertyDetailsViewModel(
+            url: url,
+            propertyLoader: propertyLoader,
+            logger: logger, 
+            imageLoader: imageLoader
+        )
+        return PropertyDetailsPage(viewModel: viewModel)
     }
 }
