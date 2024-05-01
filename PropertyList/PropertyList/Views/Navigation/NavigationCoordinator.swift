@@ -17,14 +17,23 @@ struct NavigationCoordinator: View {
                 .navigationDestination(for: PageType.self, destination: { pageType in
                     let destinationPage = pageFactory.createPage(for: pageType)
                     PageLoader(page: destinationPage)
-                    // TODO: make modifier
-                    // TODO: make dynamic color (in Theme)
-                        .toolbarBackground(Color(red: 0.89019608, green: 0.90980392, blue: 0.85098039), for: .navigationBar)
-                        .toolbarBackground(.visible, for: .navigationBar)
+                        .modifier(ThemedNavigationBar())
                 })
-                .toolbarBackground(Color(red: 0.89019608, green: 0.90980392, blue: 0.85098039), for: .navigationBar)
-                .toolbarBackground(.visible, for: .navigationBar)
+                .modifier(ThemedNavigationBar())
         }
         .tint(.primary)
+    }
+}
+
+private struct ThemedNavigationBar: ViewModifier {
+    @Environment(\.colorScheme) private var colorScheme
+    
+    func body(content: Content) -> some View {
+        content
+            .toolbarBackground(
+                colorScheme == .light ? Theme.navigationBarLightColor : Theme.navigationBarDarkColor,
+                for: .navigationBar
+            )
+            .toolbarBackground(.visible, for: .navigationBar)
     }
 }
