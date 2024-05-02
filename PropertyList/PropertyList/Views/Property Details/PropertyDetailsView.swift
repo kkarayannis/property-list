@@ -20,7 +20,7 @@ struct PropertyDetailsView: View {
                         .fontWeight(.medium)
                         .foregroundStyle(.secondary)
                     
-                    Text(verbatim: property.askingPrice.formatted(.number))
+                    Text(verbatim: property.askingPrice.formatted(.number) + " SEK")
                         .fontWeight(.bold)
                     
                     Text(verbatim: property.description)
