@@ -11,19 +11,19 @@ struct PropertyListView: View {
             case .property, .highlighted:
                 // TODO: Confirm with backend/PM that we want to skip any entries that don't have all shown fields.
                 if let propertyItem = item as? PropertyItem {
-                    let viewModel = PropertyListPropertyViewModel(
+                    let viewModel = PropertyItemViewModel(
                         propertyItem: propertyItem,
                         destinationURL: item.id == items.first?.id ? PropertyLoaderImplementation.Endpoint.url : nil,
                         imageLoader: viewModel.imageLoader
                     )
                     if let destinationURL = viewModel.destinationURL {
-                        PropertyListPropertyView(viewModel: viewModel)
+                        PropertyItemView(viewModel: viewModel)
                             .background {
                                 NavigationLink(value: PageType.propertyDetails(destinationURL)) { EmptyView() }
                                     .opacity(0.0)
                             }
                     } else {
-                        PropertyListPropertyView(viewModel: viewModel)
+                        PropertyItemView(viewModel: viewModel)
                     }
                 }
             case .area:

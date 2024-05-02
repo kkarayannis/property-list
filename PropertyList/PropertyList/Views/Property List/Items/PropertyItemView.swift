@@ -1,10 +1,10 @@
 import SwiftUI
 import ImageLoader
 
-struct PropertyListPropertyView: View {
+struct PropertyItemView: View {
     static let imageAspectRatio = 2.33
     static let imageHighlightedAspectRatio = 1.74
-    let viewModel: PropertyListPropertyViewModel
+    let viewModel: PropertyItemViewModel
     
     var body: some View {
         let item = viewModel.propertyItem

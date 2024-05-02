@@ -2,7 +2,7 @@ import Foundation
 
 import ImageLoader
 
-final class PropertyListPropertyViewModel {
+final class PropertyItemViewModel {
     let propertyItem: PropertyItem
     let destinationURL: URL?
     let imageLoader: ImageLoader
