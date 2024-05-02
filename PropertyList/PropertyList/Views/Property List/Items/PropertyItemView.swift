@@ -28,7 +28,7 @@ struct PropertyItemView: View {
                 .foregroundStyle(.secondary)
             
             HStack {
-                Text(verbatim: item.askingPrice.formatted(.number))
+                Text(verbatim: item.askingPrice.formatted(.number) + " SEK")
                 
                 Spacer()
                 

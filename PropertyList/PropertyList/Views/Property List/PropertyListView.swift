@@ -27,7 +27,9 @@ struct PropertyListView: View {
                     }
                 }
             case .area:
-                PropertyListAreaView()
+                if let areaItem = item as? AreaItem {
+                    AreaItemView(viewModel: AreaItemViewModel(areaItem: areaItem, imageLoader: viewModel.imageLoader))
+                }
             }
         }
         .listStyle(.plain)
