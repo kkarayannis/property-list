@@ -6,15 +6,15 @@ import PageLoader
 
 final class PropertyListViewModel {
     // Dependencies
-    private let propertyListLoader: PropertyListLoading
-    private let logger: Logging
-    let imageLoader: ImageLoading
+    private let propertyListLoader: PropertyListLoader
+    private let logger: Logger
+    let imageLoader: ImageLoader
     
     // State
-    @Published private var itemsResult: Result<[PropertyListItem], Error>?
+    @Published private var itemsResult: Result<[any PropertyListItem], Error>?
     private var cancellable: AnyCancellable?
     
-    init(propertyListLoader: PropertyListLoading, imageLoader: ImageLoading, logger: Logging) {
+    init(propertyListLoader: PropertyListLoader, imageLoader: ImageLoader, logger: Logger) {
         self.propertyListLoader = propertyListLoader
         self.imageLoader = imageLoader
         self.logger = logger
@@ -24,13 +24,7 @@ final class PropertyListViewModel {
         String(localized: "Properties")
     }
     
-    lazy var itemsPublisher: AnyPublisher<[PropertyListItem], Never> = $itemsResult
-        .removeDuplicates {
-            if case .success(let lhs) = $0, case .success(let rhs) = $1 {
-                return lhs == rhs
-            }
-            return false
-        }
+    lazy var itemsPublisher: AnyPublisher<[any PropertyListItem], Never> = $itemsResult
         .compactMap { result in
             switch result {
             case .success(let items):
@@ -38,6 +32,12 @@ final class PropertyListViewModel {
             case .failure, .none:
                 return nil
             }
+        }
+        .removeDuplicates { lhs, rhs in
+            let lhsIDs = lhs.map(\.id)
+            let rhsIDs = rhs.map(\.id)
+            
+            return lhsIDs == rhsIDs
         }
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()

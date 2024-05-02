@@ -3,7 +3,7 @@ import XCTest
 
 import Cache
 
-final class PublisherCacheFake: PublisherCaching {
+final class PublisherCacheFake: PublisherCache {
     
     var cancellable: AnyCancellable?
     

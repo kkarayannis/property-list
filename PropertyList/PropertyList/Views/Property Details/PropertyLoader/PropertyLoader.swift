@@ -5,30 +5,25 @@ import Cache
 import DataLoader
 
 // Loads property details from the network
-protocol PropertyLoading {
-    func publisher(for propertyURL: URL) -> AnyPublisher<Property, Error>
+protocol PropertyLoader {
+    func publisher(for propertyURL: URL) -> AnyPublisher<PropertyDetails, Error>
 }
 
-enum PropertyLoaderError: Error {
-    case invalidURL
-    case networkError
-}
-
-final class PropertyLoader: PropertyLoading {
+final class PropertyLoaderImplementation: PropertyLoader {
     private static let propertyCacheKeyPrefix = "property-"
-    private let dataLoader: DataLoading
-    private let cache: Caching
-    private let logger: Logging
+    private let dataLoader: DataLoader
+    private let cache: Cache
+    private let logger: Logger
     
-    init(dataLoader: DataLoading, cache: Caching, logger: Logging) {
+    init(dataLoader: DataLoader, cache: Cache, logger: Logger) {
         self.dataLoader = dataLoader
         self.cache = cache
         self.logger = logger
     }
     
-    func publisher(for propertyURL: URL) -> AnyPublisher<Property, Error> {
+    func publisher(for propertyURL: URL) -> AnyPublisher<PropertyDetails, Error> {
         guard let url = Endpoint.url else {
-            return Fail(error: PropertyLoaderError.invalidURL)
+            return Fail(error: DataLoaderError.invalidURL)
                 .eraseToAnyPublisher()
         }
         
@@ -36,11 +31,13 @@ final class PropertyLoader: PropertyLoading {
             .mapError { [weak self] error in
                 // Handle network error more granularly if needed here.
                 self?.logger.log(error.localizedDescription, logLevel: .error)
-                return PropertyLoaderError.networkError
+                return DataLoaderError.networkError
             }
-            .cache(PublisherCache(key: (Self.propertyCacheKeyPrefix + url.absoluteString) .base64, cache: cache))
+            .cache(PublisherCacheImplementation(
+                key: (Self.propertyCacheKeyPrefix + url.absoluteString).base64, cache: cache)
+            )
             .tryMap {
-                try JSONDecoder().decode(Property.self, from: $0)
+                try JSONDecoder().decode(PropertyDetails.self, from: $0)
             }
             .eraseToAnyPublisher()
     }

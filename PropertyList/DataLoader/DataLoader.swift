@@ -1,22 +1,27 @@
 import Foundation
 import Combine
 
+public enum DataLoaderError: Error {
+    case invalidURL
+    case networkError
+}
+
 public enum DataLoaderMethod: String {
     case get = "GET"
 }
 
 /// Loads data from the network.
-public protocol DataLoading {
+public protocol DataLoader {
     func loadData(for url: URL, parameters: [String: Any]?, method: DataLoaderMethod) -> AnyPublisher<Data, URLError>
 }
 
-public extension DataLoading {
+public extension DataLoader {
     func publisher(for url: URL) -> AnyPublisher<Data, URLError> {
         loadData(for: url, parameters: nil, method: .get)
     }
 }
 
-public final class DataLoader: DataLoading {
+public final class DataLoaderImplementation: DataLoader {
     private let urlSession: URLSession
     
     public init(urlSession: URLSession) {
@@ -31,7 +36,7 @@ public final class DataLoader: DataLoading {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         
-        if let parameters {
+        if let parameters, !parameters.isEmpty {
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
         }
         

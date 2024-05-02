@@ -6,20 +6,19 @@ import Cache
 import DataLoader
 
 /// Loads images from the network.
-public protocol ImageLoading {
+public protocol ImageLoader {
     func loadImage(for url: URL) -> AnyPublisher<UIImage, Error>
 }
 
 enum ImageLoaderError: Error {
     case imageDecodingError
-    case networkError
 }
 
-public final class ImageLoader: ImageLoading {
+public final class ImageLoaderImplementation: ImageLoader {
     private let dataLoader: DataLoader
-    private let cache: Caching
+    private let cache: Cache
     
-    public init(dataLoader: DataLoader, cache: Caching) {
+    public init(dataLoader: DataLoader, cache: Cache) {
         self.dataLoader = dataLoader
         self.cache = cache
     }
@@ -28,9 +27,9 @@ public final class ImageLoader: ImageLoading {
         dataLoader.publisher(for: url)
             .mapError { error in
                 // Handle network error more granularly if needed here.
-                return ImageLoaderError.networkError
+                return DataLoaderError.networkError
             }
-            .cache(PublisherCache(key: url.absoluteString.base64, cache: cache))
+            .cache(PublisherCacheImplementation(key: url.absoluteString.base64, cache: cache))
             .tryMap {
                 guard let image = UIImage(data: $0 ) else {
                     throw ImageLoaderError.imageDecodingError
@@ -39,19 +38,6 @@ public final class ImageLoader: ImageLoading {
             }
             .eraseToAnyPublisher()
     }
-    
-    #if DEBUG
-    private struct ImageLoaderFake: ImageLoading {
-        enum PreviewError: Error {
-            case unimplemented
-        }
-        func loadImage(for url: URL) -> AnyPublisher<UIImage, Error> {
-            Fail(error: PreviewError.unimplemented)
-                .eraseToAnyPublisher()
-        }
-    }
-    public static var fake: ImageLoading { ImageLoaderFake() }
-    #endif
 }
 
 private extension String {

@@ -5,26 +5,28 @@ import PageLoader
 
 enum PageType: Hashable {
     case propertyList
-    // In production we would probably pass an id here instead of a full URL.
     case propertyDetails(URL)
 }
 
 /// Responsible for creating pages.
 protocol PageFactory {
+    /// Creates page for a certain type.
+    /// - Parameter type: The page type that will be created.
+    /// - Returns: A Page for a given type that will be used by PageLoader.
     func createPage(for type: PageType) -> any Page
 }
 
 final class PageFactoryImplementation: PageFactory {
-    private let propertyListLoader: PropertyListLoading
-    private let propertyLoader: PropertyLoading
-    private let imageLoader: ImageLoading
-    private let logger: Logging
+    private let propertyListLoader: PropertyListLoader
+    private let propertyLoader: PropertyLoader
+    private let imageLoader: ImageLoader
+    private let logger: Logger
     
     init(
-        propertyListLoader: PropertyListLoading,
-        propertyLoader: PropertyLoading,
-        imageLoader: ImageLoading,
-        logger: Logging
+        propertyListLoader: PropertyListLoader,
+        propertyLoader: PropertyLoader,
+        imageLoader: ImageLoader,
+        logger: Logger
     ) {
         self.propertyListLoader = propertyListLoader
         self.propertyLoader = propertyLoader

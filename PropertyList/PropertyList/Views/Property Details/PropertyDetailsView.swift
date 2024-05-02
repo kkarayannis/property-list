@@ -3,7 +3,7 @@ import SwiftUI
 struct PropertyDetailsView: View {
     let viewModel: PropertyDetailsViewModel
     
-    @State private var property: Property?
+    @State private var property: PropertyDetails?
     
     var body: some View {
         ScrollView {

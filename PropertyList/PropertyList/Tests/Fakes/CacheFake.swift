@@ -1,6 +1,6 @@
 import Cache
 
-final class CacheFake: Caching {
+final class CacheFake: Cache {
     var dataStored: Data?
     func store(data: Data, key: String) async throws {
         dataStored = data

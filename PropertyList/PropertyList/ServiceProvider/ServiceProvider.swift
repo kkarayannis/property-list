@@ -4,29 +4,29 @@ import Cache
 import DataLoader
 import ImageLoader
 
-protocol ServiceProviding {
-    func provideDataLoader() -> DataLoading
-    func provideCache() -> Caching
+protocol ServiceProvider {
+    func provideDataLoader() -> DataLoader
+    func provideCache() -> Cache
     func providePageFactory() -> PageFactory
 }
 
-final class ServiceProvider: ServiceProviding {
-    private let logger = Logger()
-    private let dataLoader = DataLoader(urlSession: URLSession.shared)
-    private let cache = Cache(fileManager: FileManager.default)
-    private lazy var imageLoader = ImageLoader(dataLoader: dataLoader, cache: cache)
+final class ServiceProviderImplementation: ServiceProvider {
+    private let logger = LoggerImplementation()
+    private let dataLoader = DataLoaderImplementation(urlSession: URLSession.shared)
+    private let cache = CacheImplementation(fileManager: FileManager.default)
+    private lazy var imageLoader = ImageLoaderImplementation(dataLoader: dataLoader, cache: cache)
     private lazy var pageFactory = PageFactoryImplementation(
-        propertyListLoader: PropertyListLoader(dataLoader: dataLoader, cache: cache, logger: logger), 
-        propertyLoader: PropertyLoader(dataLoader: dataLoader, cache: cache, logger: logger),
+        propertyListLoader: PropertyListLoaderImplementation(dataLoader: dataLoader, cache: cache, logger: logger),
+        propertyLoader: PropertyLoaderImplementation(dataLoader: dataLoader, cache: cache, logger: logger),
         imageLoader: imageLoader,
         logger: logger
     )
     
-    func provideDataLoader() -> DataLoading {
+    func provideDataLoader() -> DataLoader {
         dataLoader
     }
     
-    func provideCache() -> Caching {
+    func provideCache() -> Cache {
         cache
     }
     

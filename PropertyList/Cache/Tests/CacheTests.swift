@@ -4,7 +4,7 @@ import XCTest
 final class CacheTests: XCTestCase {
 
     // Unit under test
-    private var cache: Caching!
+    private var cache: Cache!
     
     // Dependencies
     private var fileManagerFake: FileManagerFake!
@@ -12,7 +12,7 @@ final class CacheTests: XCTestCase {
     override func setUp() {
         super.setUp()
         fileManagerFake = FileManagerFake()
-        cache = Cache(fileManager: fileManagerFake)
+        cache = CacheImplementation(fileManager: fileManagerFake)
     }
 
     func testCacheWritesDataToDisk() async throws {

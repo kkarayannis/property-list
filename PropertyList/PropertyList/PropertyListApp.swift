@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct PropertyListApp: App {
-    private let serviceProvider = ServiceProvider()
+    private let serviceProvider = ServiceProviderImplementation()
     
     var body: some Scene {
         WindowGroup {

@@ -8,11 +8,11 @@ enum LogLevel {
     case warning
 }
 
-protocol Logging {
+protocol Logger {
     func log(_ message: String, logLevel: LogLevel)
 }
 
-final class Logger: Logging {
+final class LoggerImplementation: Logger {
     private let logger = os.Logger()
     
     func log(_ message: String, logLevel: LogLevel) {

@@ -3,21 +3,26 @@ import Foundation
 
 enum PublisherCacheError: Error {
     case noDataForKey
+    case invalidContext
 }
 
 /// Caches elements from a publisher and produces a publisher for cached elements.
-public protocol PublisherCaching {
-    func cacheElements(from publisher: some Publisher<Data, Error>)
+public protocol PublisherCache {
+    /// Returns a publisher that publishes cached elements.
     var cachedDataPublisher: any Publisher<Data, Error> { get }
+    
+    /// Cache the latest element that a publisher emits
+    /// - Parameter publisher: The publisher whose elements to cache.
+    func cacheElements(from publisher: some Publisher<Data, Error>)
 }
 
-public final class PublisherCache: PublisherCaching {
+public final class PublisherCacheImplementation: PublisherCache {
     private let key: String
-    private let cache: Caching
+    private let cache: Cache
     
     private var subscription: AnyCancellable?
     
-    public init(key: String, cache: Caching = Cache(fileManager: FileManager.default)) {
+    public init(key: String, cache: Cache = CacheImplementation(fileManager: FileManager.default)) {
         self.key = key
         self.cache = cache
     }
@@ -33,7 +38,11 @@ public final class PublisherCache: PublisherCaching {
     
     public var cachedDataPublisher: any Publisher<Data, Error> {
         Future { promise in
-            Task {
+            Task { [weak self] in
+                guard let self else {
+                    promise(.failure(PublisherCacheError.invalidContext))
+                    return
+                }
                 guard let data = try await self.cache.data(for: self.key) else {
                     promise(.failure(PublisherCacheError.noDataForKey))
                     return

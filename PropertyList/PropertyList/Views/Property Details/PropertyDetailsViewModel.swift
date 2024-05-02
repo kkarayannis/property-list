@@ -8,17 +8,17 @@ final class PropertyDetailsViewModel {
     let url: URL
     
     // Dependencies
-    private let propertyLoader: PropertyLoading
-    private let logger: Logging
-    let imageLoader: ImageLoading
+    private let propertyLoader: PropertyLoader
+    private let logger: Logger
+    let imageLoader: ImageLoader
     
     // State
-    @Published private var propertyResult: Result<Property, Error>?
+    @Published private var propertyResult: Result<PropertyDetails, Error>?
     private var cancellable: AnyCancellable?
     
     var title: String {
         switch propertyResult {
-        case let .success(property):
+        case .success(let property):
             property.streetAddress
         case .failure, nil:
             ""
@@ -27,9 +27,9 @@ final class PropertyDetailsViewModel {
     
     init(
         url: URL,
-        propertyLoader: PropertyLoading,
-        logger: Logging,
-        imageLoader: ImageLoading
+        propertyLoader: PropertyLoader,
+        logger: Logger,
+        imageLoader: ImageLoader
     ) {
         self.url = url
         self.propertyLoader = propertyLoader
@@ -37,7 +37,7 @@ final class PropertyDetailsViewModel {
         self.imageLoader = imageLoader
     }
     
-    lazy var propertyPublisher: AnyPublisher<Property, Never> = $propertyResult
+    lazy var propertyPublisher: AnyPublisher<PropertyDetails, Never> = $propertyResult
         .removeDuplicates {
             if case .success(let lhs) = $0, case .success(let rhs) = $1 {
                 return lhs == rhs

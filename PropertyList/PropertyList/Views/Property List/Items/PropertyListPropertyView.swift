@@ -2,8 +2,8 @@ import SwiftUI
 import ImageLoader
 
 struct PropertyListPropertyView: View {
-    static let imageAspectRatio = 2.3254716981
-    static let imageHighlightedAspectRatio = 1.7383015598
+    static let imageAspectRatio = 2.33
+    static let imageHighlightedAspectRatio = 1.74
     let viewModel: PropertyListPropertyViewModel
     
     var body: some View {
@@ -47,5 +47,11 @@ struct PropertyListPropertyView: View {
     
     private var imageAspectRatio: Double {
         viewModel.propertyItem.isHighlighted ? Self.imageHighlightedAspectRatio : Self.imageAspectRatio
+    }
+}
+
+private extension PropertyItem {
+    var isHighlighted: Bool {
+        type == .highlighted
     }
 }

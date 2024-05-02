@@ -4,7 +4,7 @@ import XCTest
 
 import DataLoader
 
-final class DataLoaderFake: DataLoading {
+final class DataLoaderFake: DataLoader {
     
     var data: Data?
     var error: URLError?

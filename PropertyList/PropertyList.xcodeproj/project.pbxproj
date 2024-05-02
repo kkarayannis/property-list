@@ -67,6 +67,7 @@
 		2EADFFBF2BE255AD009143B1 /* properties.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EADFFBE2BE255AD009143B1 /* properties.json */; };
 		2EADFFC12BE36610009143B1 /* PropertyListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADFFC02BE36610009143B1 /* PropertyListViewModelTests.swift */; };
 		2EADFFC32BE36651009143B1 /* PropertyListLoaderFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADFFC22BE36651009143B1 /* PropertyListLoaderFake.swift */; };
+		2EADFFC52BE41D6C009143B1 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADFFC42BE41D6C009143B1 /* ImageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +229,7 @@
 		2EADFFBE2BE255AD009143B1 /* properties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = properties.json; sourceTree = "<group>"; };
 		2EADFFC02BE36610009143B1 /* PropertyListViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyListViewModelTests.swift; sourceTree = "<group>"; };
 		2EADFFC22BE36651009143B1 /* PropertyListLoaderFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListLoaderFake.swift; sourceTree = "<group>"; };
+		2EADFFC42BE41D6C009143B1 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,6 +531,7 @@
 			isa = PBXGroup;
 			children = (
 				2E2FEEF62BDE972A002E6B4A /* ImageView.swift */,
+				2EADFFC42BE41D6C009143B1 /* ImageViewModel.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -905,6 +908,7 @@
 				2E2FEEC62BDE60E2002E6B4A /* PropertyListPage.swift in Sources */,
 				2E2FEEB12BDE4C42002E6B4A /* PropertyListLoader.swift in Sources */,
 				2E2FEEB82BDE57AE002E6B4A /* String+Extensions.swift in Sources */,
+				2EADFFC52BE41D6C009143B1 /* ImageViewModel.swift in Sources */,
 				2E2FEDFF2BDE3FD6002E6B4A /* PropertyListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
