@@ -3,14 +3,14 @@
 import Combine
 import XCTest
 
-final class PropertyListLoaderFake: PropertyListLoading {
-    var propertyListItems: [PropertyListItem]?
+final class PropertyListLoaderFake: PropertyListLoader {
+    var propertyListItems: [any PropertyListItem]?
     var error: Error?
     
-    var propertyListPublisher: AnyPublisher<[PropertyListItem], Error> {
+    var propertyListPublisher: AnyPublisher<[any PropertyListItem], Error> {
         guard propertyListItems != nil || error != nil else {
             XCTFail("Both propertyListItems and error are nil")
-            return Empty<[PropertyListItem], Error>()
+            return Empty<[any PropertyListItem], Error>()
                 .eraseToAnyPublisher()
         }
         
@@ -23,7 +23,7 @@ final class PropertyListLoaderFake: PropertyListLoading {
                 .eraseToAnyPublisher()
         }
         
-        return Empty<[PropertyListItem], Error>()
+        return Empty<[any PropertyListItem], Error>()
             .eraseToAnyPublisher()
     }
 }

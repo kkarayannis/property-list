@@ -5,7 +5,7 @@ import XCTest
 final class PropertyListLoaderTests: XCTestCase {
     
     // Unit under test
-    var propertyListLoader: PropertyListLoader!
+    var propertyListLoader: PropertyListLoaderImplementation!
     
     // Dependencies
     var dataLoaderFake: DataLoaderFake!
@@ -19,7 +19,7 @@ final class PropertyListLoaderTests: XCTestCase {
         dataLoaderFake = DataLoaderFake()
         cacheFake = CacheFake()
         loggerFake = LoggerFake()
-        propertyListLoader = PropertyListLoader(dataLoader: dataLoaderFake, cache: cacheFake, logger: loggerFake)
+        propertyListLoader = PropertyListLoaderImplementation(dataLoader: dataLoaderFake, cache: cacheFake, logger: loggerFake)
     }
 
     override func tearDownWithError() throws {
@@ -34,7 +34,7 @@ final class PropertyListLoaderTests: XCTestCase {
         
         // When we load the property list
         let expectation = expectation(description: "Loading property list")
-        var expectedPropertyList: [PropertyListItem]?
+        var expectedPropertyList: [any PropertyListItem]?
         cancellable = propertyListLoader.propertyListPublisher
             .sink(receiveCompletion: { completion in
                 if case .failure = completion {

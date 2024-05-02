@@ -39,11 +39,11 @@ final class PropertyListViewModelTests: XCTestCase {
     
     func testLoadItems() throws {
         // Given the loader will return a property list
-        propertyListLoaderFake.propertyListItems = try Helpers.responsePropertyList().items
+        propertyListLoaderFake.propertyListItems = try Helpers.responsePropertyList().items.compactMap(\.propertyListItem)
         
         // and that we subscribe to the itemsPublisher
         let expectation = expectation(description: "Loading items")
-        var expectedItems: [PropertyListItem]?
+        var expectedItems: [any PropertyListItem]?
         cancellable = viewModel.itemsPublisher
             .sink(receiveCompletion: { completion in
                 if case .failure = completion {
@@ -66,7 +66,7 @@ final class PropertyListViewModelTests: XCTestCase {
     
     func testLoadItemsSetsTheStateToLoaded() throws {
         // Given the loader will return a property list
-        propertyListLoaderFake.propertyListItems = try Helpers.responsePropertyList().items
+        propertyListLoaderFake.propertyListItems = try Helpers.responsePropertyList().items.compactMap(\.propertyListItem)
         
         // and that we subscribe to the pageStatePublisher
         let expectation = expectation(description: "Page state loading")
