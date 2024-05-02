@@ -60,7 +60,7 @@ final class PropertyListViewModel {
         .eraseToAnyPublisher()
     
     func loadProperties() {
-        cancellable = propertyListLoader.publisher
+        cancellable = propertyListLoader.propertyListPublisher
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 if case .failure(let failure) = completion {

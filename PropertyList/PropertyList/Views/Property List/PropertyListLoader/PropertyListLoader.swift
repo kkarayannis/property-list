@@ -6,7 +6,7 @@ import DataLoader
 
 // Loads property list items from the network
 protocol PropertyListLoading {
-    var publisher: AnyPublisher<[PropertyListItem], Error> { get }
+    var propertyListPublisher: AnyPublisher<[PropertyListItem], Error> { get }
 }
 
 enum PropertyListLoaderError: Error {
@@ -26,7 +26,7 @@ final class PropertyListLoader: PropertyListLoading {
         self.logger = logger
     }
     
-    var publisher: AnyPublisher<[PropertyListItem], Error> {
+    var propertyListPublisher: AnyPublisher<[PropertyListItem], Error> {
         guard let url = Endpoint.url else {
             return Fail(error: PropertyListLoaderError.invalidURL)
                 .eraseToAnyPublisher()
