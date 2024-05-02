@@ -8,7 +8,7 @@ enum TestError: Error {
 }
 
 final class Helpers {
-    static func responseData() throws -> Data {
+    static func propertyListTestData() throws -> Data {
         let bundle = Bundle(for: Self.self)
         guard let url = bundle.url(forResource: "properties", withExtension: "json") else {
             throw TestError.dataError
@@ -17,7 +17,7 @@ final class Helpers {
     }
     
     static func responsePropertyList() throws -> PropertyListResponse {
-        let data = try responseData()
+        let data = try propertyListTestData()
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         

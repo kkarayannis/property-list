@@ -4,11 +4,12 @@ import Foundation
 extension Publisher<Data, Error> {
     
     /// This stores a publisher's latest element to a cache.
-    /// If the cache has a miss then only the upstream elements are published.
-    /// If the cache has a hit then the cache's element is published and then the upstream's element follows.
-    /// If for some reason the upstream publisher produces an element before the cache produces it's element, the cache's element is ignored (not published).
-    /// The cache never emits any errors.
-    /// The upstream publisher's errors are emitted but only if the cache hasn't emitted any elements. If it has, then this publisher finishes without an error.
+    /// - Note:
+    ///   - If the cache has a miss then only the upstream elements are published.
+    ///   - If the cache has a hit then the cache's element is published and then the upstream's element follows.
+    ///   - If for some reason the upstream publisher produces an element before the cache produces it's element, the cache's element is ignored (not published).
+    ///   - The cache never emits any errors.
+    ///   - The upstream publisher's errors are emitted but only if the cache hasn't emitted any elements. If it has, then this publisher finishes without an error.
     public func cache(_ cache: PublisherCaching) -> AnyPublisher<Data, Error> {
         let upstream = self.share()
         cache.cacheElements(from: upstream)
@@ -28,7 +29,6 @@ extension Publisher<Data, Error> {
                 guard hasEmittedElement else {
                     throw error
                 }
-                NSLog(error.localizedDescription)
                 return Empty<Data, Error>()
             }
             .eraseToAnyPublisher()

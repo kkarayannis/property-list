@@ -30,7 +30,7 @@ final class PropertyListLoaderTests: XCTestCase {
 
     func testLoadingPropertyList() throws {
         // Given the data loader has some data
-        dataLoaderFake.data = try Helpers.responseData()
+        dataLoaderFake.data = try Helpers.propertyListTestData()
         
         // When we load the property list
         let expectation = expectation(description: "Loading property list")

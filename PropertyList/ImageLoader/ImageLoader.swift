@@ -28,7 +28,6 @@ public final class ImageLoader: ImageLoading {
         dataLoader.publisher(for: url)
             .mapError { error in
                 // Handle network error more granularly if needed here.
-                NSLog(error.localizedDescription)
                 return ImageLoaderError.networkError
             }
             .cache(PublisherCache(key: url.absoluteString.base64, cache: cache))
